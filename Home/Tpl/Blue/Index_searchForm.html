@@ -1,0 +1,12 @@
+<div class="search">
+	<form id="search" action="http://{$_SERVER['HTTP_HOST']}{:C('ROOT_FILE')}" target="_self">
+		<div class="opt" id="search-opt">
+			<a href="javascript:;"><img id="search-img" src="__PUBLIC__/Assets/img/favicon.ico"></a>
+			
+		</div>
+		<input type="text" id="search-kw" class="search-input" name="kw" placeholder="{:lang('search')}" autocomplete="off" value="{$_GET['kw']}">
+		<input name="ie" type="hidden" value="utf-8">
+		<input name="a" type="hidden" value="search">
+		<input type="submit" class="search-button" value="">
+	</form>
+</div>

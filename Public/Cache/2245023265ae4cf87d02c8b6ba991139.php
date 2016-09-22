@@ -1,0 +1,6 @@
+<?php
+//000008640000a:18:{s:5:"title";s:55:"vr345导航-VR网址导航，给你想要的VR网站！";s:8:"keywords";s:41:"VR网址，VR网站，VR导航，AR网站";s:4:"logo";s:25:"/201604/570f9cdf459dc.png";s:11:"description";s:184:"VR导航网站，收录VR视频、VR游戏、VR资源下载；VR社区、VR资讯、VR论坛、VR产品测评；VR装备、VR开发者等类别的VR行业网站，以及AR/MR网站。 ";s:9:"sub_title";s:0:"";s:6:"footer";s:779:"<center><font color="#FAFAFA">按Ctrl+D收藏本站</font>
+<br><a href="http://weibo.com/ttarticle/p/show?id=2309404002566529771064" target="_blank" >申请收录</a>：support@vr345.com   <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1257136028'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1257136028' type='text/javascript'%3E%3C/script%3E"));</script>
+<br>备案号：<a href="http://www.miitbeian.gov.cn/publish/query/indexFirst.action" target="_blank" ><font color="#808080">京ICP备16009266号</font></a>   虚拟现实VR网站导航<br>
+<font color="#161616">12345 记住我们的网址：VR345.COM</font>";s:13:"DEFAULT_THEME";s:4:"Blue";s:5:"width";s:4:"1200";s:9:"URL_MODEL";s:1:"2";s:5:"theme";s:4:"Blue";s:13:"item_hot_show";s:1:"0";s:12:"item_hot_num";s:3:"100";s:19:"recommend_img_width";s:3:"100";s:12:"category_num";s:3:"100";s:25:"category_show_description";s:1:"1";s:9:"slideshow";s:1:"1";s:7:"sidenav";s:1:"0";s:6:"qrcode";s:0:"";}
+?>

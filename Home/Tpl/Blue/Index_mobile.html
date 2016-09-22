@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>{$seo.title}</title>
+    <meta name="keywords" content="{$seo.keywords}">
+    <meta name="description" content="{$seo.description}">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Skins/wap/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Skins/wap/style_s.css" />
+    <script type="text/javascript" src="__PUBLIC__/Skins/jquery.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Skins/swiper.min.js"></script>
+</head>
+
+<body class="page-top">
+    <header class="header">
+        <div class="logo">
+            <a href="/"><img src="<empty name='config.logo'>__PUBLIC__/Skins/logo.png<else />__PUBLIC__/Uploads{$config.logo}</empty>" height='44px' alt="{$config.title}"></a>
+        </div>
+    </header>
+    <div id="container" class="wrap">
+<volist name="list" id="vo">
+<div class="section" id="{$vo.alias}">
+<div class="cn_hd clearfix">
+<h2 class="cn_h2">{$vo.name}</h2>
+<div class="swiper-c fr">
+<div id="prev{$vo.alias}" class="swiper-button-prev"></div>
+<div id="swiper{$vo.alias}" class="swiper-container">
+<ul class="swiper-wrapper">
+<notempty name="vo.category"><li class="current swiper-slide">{:lang('all')}</li></notempty>
+<volist name="vo.category" id="cat"><li class="swiper-slide">{$cat.name}</li>
+</volist>
+</ul>
+</div>
+<div id="next{$vo.alias}" class="swiper-button-next"></div>
+</div>
+</div>
+
+                <div class="content">
+                    <ul class="time-list clearfix">
+                        <volist name="vo.list" id="li">
+                            <li>
+                                <a href="{$li.url}" target="_blank">{$li.title} <eq name="li.is_hot" value="1"></eq></a>
+                                <p>{$li.description}</p>
+                            </li>
+                        </volist>
+                    </ul>
+                </div>
+                <volist name="vo.category" id="cat">
+                    <div class="content" id="{$cat['alias']}{$cat['id']}" style="display:none">
+                        <ul class="time-list clearfix">
+                            <php>$catlist = D('Item')->getcategoryList($cat['id']);</php>
+                            <volist name="catlist" id="li">
+                                <li>
+                                    <a href="{$li.url}" target="_blank">{$li.title}<eq name="li.is_hot" value="1"></eq></a>
+                                    <p>{$li.description}</p>
+                                </li>
+                            </volist>
+                        </ul>
+                    </div>
+                </volist>
+            </div>
+    <script>
+    var swiper{$vo.alias} = new Swiper('#swiper{$vo.alias}', {
+        nextButton: '#next{$vo.alias}',
+        prevButton: '#prev{$vo.alias}',
+        slidesPerView: 'auto',
+        paginationClickable: true,
+        spaceBetween: 30,
+        freeMode: true
+    });
+    </script>
+</volist>
+    </div>
+    <script type="text/javascript">
+    $('.section').each(function() {
+
+
+
+        $(this).find('.swiper-wrapper li').removeClass('current').eq(0).addClass('current')
+
+
+
+        $(this).find('.content').hide().eq(0).show()
+
+
+
+        $(this).find('.swiper-wrapper li').each(function(i) {
+
+
+
+            $(this).hover(function() {
+
+
+
+                $(this).parents('.section ').find('.swiper-wrapper li').removeClass('current').eq(i).addClass('current')
+
+
+
+                $(this).parents('.section ').find('.content').hide().eq(i).show()
+
+
+
+            })
+
+
+
+        })
+
+
+
+    })
+    </script>
+    <footer class="footer">
+        <div class="container">
+            {$config.footer}
+        </div>
+    </footer>
+</body>
+
+</html>

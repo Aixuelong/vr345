@@ -1,0 +1,89 @@
+
+<include file="Index:header" /> 
+
+<div id="container" class="wrap">
+
+    <div class="section mtop" id="{$vo.alias}">
+        <h1 class="title">
+            <i class="icon-{$vo.icon}"></i>{:lang('all')}
+           
+        </h1>
+        <div class="content">
+            <ul class="time-list clearfix" id="title">
+			    <php>$tjlist = D('Item')->gettuijianList($tags['tags_type_id']);</php>
+            	<volist name="tjlist" id="li">
+                <li>
+				    <div class="show1">
+					<a href="{$li.url}" target="_blank" >{$li.title}<eq name="li.is_hot" value="1"><img src="__PUBLIC__/Skins/hot.gif" /></eq></a>
+					</div>
+					<div class="show2">
+					<if condition="$li['logo'] NEQ ''">
+                    <div class="pic-ietm"><img class="dpimg" src="/Public/Uploads{$li.logo}" /> </div> 
+					</if>
+					<if condition="$li['logo'] EQ ''">
+					<a href="{$li.url}" target="_blank" class="a_dec" >{$li.description} </a>
+                    </if>
+					</div>
+					<p>&nbsp;</p>
+				</li>
+                </volist>
+            </ul>
+        </div>
+    </div>
+
+	
+    <volist name="list" id="vo">
+    <div class="section mtop" id="{$vo.alias}">
+        <h1 class="title">
+            <i class="icon-{$vo.icon}"></i>{$vo.name}
+           
+        </h1>
+        <div class="content">
+            <ul class="time-list clearfix" id="title">
+            	<volist name="vo.list" id="li">
+                <li>
+					<div class="show1">
+				    <a href="{$li.url}" target="_blank" >{$li.title} </a>
+					</div>
+					
+					<div class="show2">
+					<if condition="$li['logo'] NEQ ''">
+                    <div class="pic-ietm"><img class="dpimg" src="/Public/Uploads{$li.logo}" /> </div> 
+					</if>
+					<if condition="$li['logo'] EQ ''">
+					<a href="{$li.url}" target="_blank" class="a_dec" >{$li.description} </a>
+                    </if>
+					</div>
+					<p>&nbsp;</p>
+				</li>
+                </volist>
+            </ul>
+        </div>
+    </div><!--.section-->
+    </volist>
+
+	<script type="text/javascript">
+
+$(document).ready(function(){   
+     $("#title .show1").mouseover(function(){
+	      $(this).hide();
+		  $(this).next(".show2").show();
+          //$(this).slideUp("normal");
+          //$(this).next(".show2").slideDown("normal");
+      });
+   
+     $("#title .show2").mouseout(function(){
+	      $(this).hide();
+		  $(this).prev(".show1").show();
+          //$(this).slideUp("normal");
+          //$(this).prev(".show1").slideDown("normal");
+      });
+	  
+})
+
+
+</script>   
+</div><!--#container-->
+
+<include file="Index:sidenav" />
+<include file="Index:footer" /> 

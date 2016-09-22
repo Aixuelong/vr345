@@ -1,0 +1,5 @@
+# robots.txt generated at http://tool.chinaz.com/robots/ 
+User-agent:Baiduspider
+Disallow: /Admin/
+Disallow: /Public/Skins/
+Disallow: /Public/Assets/
