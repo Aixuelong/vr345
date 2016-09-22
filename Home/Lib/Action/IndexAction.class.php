@@ -14,24 +14,24 @@
 
 class IndexAction extends CommonAction {
 
-	
+
 
 	public function _initialize(){
 
 		parent::_initialize();
 
-		
+
 
 		$name = str_replace('/','',ACTION_NAME);
 
-		
+
 		 //手持设备浏览
-		if(isMobile()){ 
+		if(isMobile()){
 			C('URL_MODEL',0);
 			C('HTML_CACHE_ON',false);
-			$this->mobile($name);exit; 
+			$this->mobile($name);exit;
 		}else{
-		
+
 
 			if(method_exists($this,$name)){
 
@@ -74,7 +74,7 @@ class IndexAction extends CommonAction {
 
 			$li['category'] = $TagsType->query('SELECT tags.id,tags_type.tags_id,tags_type.tags_pid,tags.name,tags.alias FROM __TABLE__ tags_type INNER JOIN '.C('DB_PREFIX').'tags tags ON tags_type.tags_id=tags.id WHERE tags_type.tags_pid='.$li['id'].' ORDER BY tags_type.sort_order DESC,tags.id ASC');
 
-			
+
 
 			$li['list'] = $Model->query('SELECT item.title,item.url,item.icon,item.description,item.is_hot,item.logo FROM __TABLE__ item INNER JOIN '.C('DB_PREFIX').'tags_relationship tags_relationship ON item.id=tags_relationship.item_id WHERE item.status=1 AND tags_relationship.tags_type_id='.$li['tags_type_id'].' ORDER BY item.sort_order DESC,item.id ASC LIMIT '.$limit);
 
@@ -82,7 +82,7 @@ class IndexAction extends CommonAction {
 
 			}
 
-			
+
 
 			if($li['id']==35)
 
@@ -90,7 +90,7 @@ class IndexAction extends CommonAction {
 
 			$li['category'] = $TagsType->query('SELECT tags.id,tags_type.tags_id,tags_type.tags_pid,tags.name,tags.alias FROM __TABLE__ tags_type INNER JOIN '.C('DB_PREFIX').'tags tags ON tags_type.tags_id=tags.id WHERE tags_type.tags_pid='.$li['id'].' ORDER BY tags_type.sort_order DESC,tags.id ASC');
 
-			
+
 
 			$li['list'] = $Model->query('SELECT item.title,item.url,item.icon,item.description,item.is_hot,item.logo FROM __TABLE__ item INNER JOIN '.C('DB_PREFIX').'tags_relationship tags_relationship ON item.id=tags_relationship.item_id WHERE item.status=1 AND tags_relationship.tags_type_id='.$li['tags_type_id'].' ORDER BY item.sort_order DESC,item.id ASC LIMIT '.$limit);
 
@@ -103,6 +103,9 @@ class IndexAction extends CommonAction {
 		$this->seoSetting($tags);
 
 		$this->assign('list',$list);
+
+		$redirect_prefix = '/link.php?url=';
+		$this->assign('redirect_prefix', $redirect_prefix);
 
 		$this->assign('newslist',$newslist);
 
@@ -124,7 +127,7 @@ class IndexAction extends CommonAction {
 
 			//header('location:/page404.html');
 
-			header('HTTP/1.1 404 Not Found');  
+			header('HTTP/1.1 404 Not Found');
 
 			$this->display('404');exit;
 
@@ -138,17 +141,17 @@ class IndexAction extends CommonAction {
 
 		$Item     = M('Item');
 
-		
+
 
 		$tags  = D('TagsView')->where(array('alias' => $name))->find();
 
-		
+
 
 		if($tags['pid']==0){
 
 			$hasSubNav = M('TagsType')->where('tags_pid='.$tags['id'])->getField('id');
 
-			
+
 
 			if($hasSubNav){
 
@@ -170,15 +173,15 @@ class IndexAction extends CommonAction {
 
 		}
 
-			
 
-		$menu = $Model->query('SELECT tags.id,tags.name,tags.alias,tags_type.icon,tags_type.id AS tags_type_id FROM __TABLE__ tags INNER JOIN '.C('DB_PREFIX').'tags_type tags_type ON tags.id=tags_type.tags_id WHERE tags_type.type=2 AND '.$map.' ORDER BY tags_type.sort_order DESC'); 
+
+		$menu = $Model->query('SELECT tags.id,tags.name,tags.alias,tags_type.icon,tags_type.id AS tags_type_id FROM __TABLE__ tags INNER JOIN '.C('DB_PREFIX').'tags_type tags_type ON tags.id=tags_type.tags_id WHERE tags_type.type=2 AND '.$map.' ORDER BY tags_type.sort_order DESC');
 
 
 
 		foreach($menu as $li){
 
-			
+
 
 			$li['list'] = $Item->query('SELECT item.title,item.url,item.icon,item.logo,item.description,item.is_hot FROM __TABLE__ item INNER JOIN '.C('DB_PREFIX').'tags_relationship tags_relationship ON item.id=tags_relationship.item_id WHERE item.status=1 AND tags_relationship.tags_type_id='.$li['tags_type_id'].' ORDER BY item.sort_order DESC,item.id ASC '.$limit);
 
@@ -190,7 +193,7 @@ class IndexAction extends CommonAction {
 
 		$this->seoSetting($tags);
 
-		
+
 
         $this->assign('tags',$tags);
 
@@ -202,7 +205,7 @@ class IndexAction extends CommonAction {
 
     }
 
-	
+
 
 	private function mobile($name){
 
@@ -215,7 +218,7 @@ class IndexAction extends CommonAction {
 		foreach($navigation as $li){
 			if($li['id']!=35){
 			$li['category'] = $TagsType->query('SELECT tags.id,tags.name,tags.alias FROM __TABLE__ tags_type INNER JOIN '.C('DB_PREFIX').'tags tags ON tags_type.tags_id=tags.id WHERE tags_type.tags_pid='.$li['id'].' ORDER BY tags_type.sort_order DESC,tags.id ASC');
-			
+
 			$li['list'] = $Model->query('SELECT item.title,item.url,item.icon,item.description,item.is_hot FROM __TABLE__ item INNER JOIN '.C('DB_PREFIX').'tags_relationship tags_relationship ON item.id=tags_relationship.item_id WHERE item.status=1 AND tags_relationship.tags_type_id='.$li['tags_type_id'].' ORDER BY item.sort_order DESC,item.id ASC LIMIT '.$limit);
 			$list[] = $li;
 		    }
@@ -244,7 +247,10 @@ class IndexAction extends CommonAction {
 
 		$this->assign('list',$list);
 
-		$this->display();
+		$redirect_prefix = '/link.php?url=';
+		$this->assign('redirect_prefix', $redirect_prefix);
+
+		$this->display();	
 
 	}
 
