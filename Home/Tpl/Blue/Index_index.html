@@ -1,17 +1,17 @@
 
-<include file="Index:header" /> 
+<include file="Index:header" />
 
 
 
 <div id="container" class="wrap homepage">
 
-    
 
-	
 
-    <include file="Index:hot" /> 
 
-    
+
+    <include file="Index:hot" />
+
+
 
     <volist name="list" id="vo">
 
@@ -29,7 +29,7 @@
 
                 </volist>
 
-            </span>  
+            </span>
 
 		   <if condition="$vo['alias'] NEQ 'other'"></if>
         </h2>
@@ -42,26 +42,26 @@
 
                 <li>
 				    <div class="show1">
-				    <a href="{$li.url}" target="_blank" >{$li.title} </a>
+				    <a href="{$redirect_prefix}{$li.url}" target="_blank" >{$li.title} </a>
 					</div>
-					
+
 					<div class="show2">
 					<if condition="$li['logo'] NEQ ''">
-                    <div class="pic-ietm"><img class="dpimg" src="/Public/Uploads{$li.logo}" /> </div> 
+                    <div class="pic-ietm"><img class="dpimg" src="/Public/Uploads{$li.logo}" /> </div>
 					</if>
 					<if condition="$li['logo'] EQ ''">
-					<a href="{$li.url}" target="_blank" class="a_dec" >{$li.description} </a>
+					<a href="{$redirect_prefix}{$li.url}" target="_blank" class="a_dec" >{$li.description} </a>
                     </if>
 					</div>
-				   
+
 				</li>
-				
+
                 </volist>
 
             </ul>
 
         </div>
-		
+
 
 		<volist name="vo.category" id="cat">
 
@@ -71,23 +71,23 @@
 
 			    <php>$catlist = D('Item')->getcategoryList($cat['tags_id']);</php>
 
-				
+
 
             	<volist name="catlist" id="li">
 
                 <li>
                     <div class="show1">
-					<a href="{$li.url}" target="_blank" >{$li.title}<eq name="li.is_hot" value="1"></eq></a>
+					<a href="{$redirect_prefix}{$li.url}" target="_blank" >{$li.title}<eq name="li.is_hot" value="1"></eq></a>
 					</div>
                     <div class="show2">
 					<if condition="$li['logo'] NEQ ''">
                     <div class="pic-ietm"><img class="dpimg" src="/Public/Uploads{$li.logo}" /> </div>
 					</if>
 					<if condition="$li['logo'] EQ ''">
-					<a href="{$li.url}" target="_blank" class="a_dec">{$li.description} </a>
+					<a href="{$redirect_prefix}{$li.url}" target="_blank" class="a_dec">{$li.description} </a>
                     </if>
 					</div>
-				
+
 
 				</li>
 
@@ -99,23 +99,23 @@
 
 		</volist>
 
-		
+
 
     </div>
 
     </volist>
 
-	
+
 
 	<volist name="newslist" id="vo">
 
-    
+
 
     </volist>
 
 
 
-    
+
 
 </div><!--#container-->
 
@@ -158,21 +158,21 @@ $('.section').each(function(){
 
 <script type="text/javascript">
 
-$(document).ready(function(){   
+$(document).ready(function(){
      $("#title .show1").mouseover(function(){
 	      $(this).hide();
 		  $(this).next(".show2").show();
           //$(this).slideUp("normal");
           //$(this).next(".show2").slideDown("normal");
       });
-   
+
      $("#title .show2").mouseout(function(){
 	      $(this).hide();
 		  $(this).prev(".show1").show();
           //$(this).slideUp("normal");
           //$(this).prev(".show1").slideDown("normal");
       });
-	  
+
 })
 
 </script>
@@ -189,7 +189,7 @@ $(function(){
 
 		$(this).next('.description').css('padding-top',height).stop(true,true).fadeIn();
 
-	},function(){ $(this).next('.description').stop(true,true).fadeOut('fast',function(){ $(this).parent().removeClass('active');});});	
+	},function(){ $(this).next('.description').stop(true,true).fadeOut('fast',function(){ $(this).parent().removeClass('active');});});
 
 	$('.gallery-list a').click(function(){
 
@@ -203,8 +203,8 @@ $(function(){
 
 </script>
 
-<include file="Index:slideshow" /> 
+<include file="Index:slideshow" />
 
 <include file="Index:sidenav" />
 
-<include file="Index:footer" /> 
+<include file="Index:footer" />
