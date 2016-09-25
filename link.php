@@ -1,4 +1,8 @@
 <?php
-$url = $_GET["url"];
-header("location:$url");
+if(empty($_GET["url"])) {
+  header("location:/");
+} else {
+  $url = $_GET["url"];
+  header("location:$url");
+}
 ?>

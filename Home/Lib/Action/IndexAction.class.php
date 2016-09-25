@@ -250,7 +250,7 @@ class IndexAction extends CommonAction {
 		$redirect_prefix = '/link.php?url=';
 		$this->assign('redirect_prefix', $redirect_prefix);
 
-		$this->display();	
+		$this->display();
 
 	}
 
@@ -314,7 +314,7 @@ class IndexAction extends CommonAction {
 
 	public function click(){
 
-		M('Item')->where(array('url'=>$_POST['url']))->setInc('click',1);
+		M('Item')->where(array('url'=>str_ireplace("/link.php?url=","",$_POST['url'])))->setInc('click',1);
 
 	}
 
